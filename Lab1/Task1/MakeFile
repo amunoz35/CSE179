@@ -1,0 +1,25 @@
+EXEC = output
+CC = gcc    
+#CFLAGS = -I.     
+
+INCDIR =./include
+OBJDIR = ./obj
+SRCDIR = ./src
+
+CFLAGS += -I$(INCDIR) -I$(SRCDIR)
+
+SOURCES = learn_makefile.c printfunc.c
+
+_OBJ = $(SOURCES:.c=.o)
+OBJ = $(patsubst %,$(OBJDIR)/%,$(_OBJ))
+
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	$(CC) -o $(EXEC) $(OBJ) $(CFLAGS)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+clean:
+	rm -vf $(EXEC) $(OBJ)
