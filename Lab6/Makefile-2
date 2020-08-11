@@ -1,0 +1,14 @@
+EXEC: MPI_collective
+EXEC: MPI_scatterGather
+MPICC = mpicc
+
+all :${EXEC}
+
+MPI_collective: MPI_collective.c
+	${MPICC} -o test MPI_collective.c
+
+MPI_scatterGather: MPI_scatterGather.c
+	${MPICC} -o scatter MPI_scatterGather.c
+
+clean:
+	rm -rf *.exe
