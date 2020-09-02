@@ -1,0 +1,10 @@
+MPICC=mpicc
+
+all: matrixmult matrixBlock
+
+matrixmult: matrix_mult.c
+	$(MPICC) -o3 -lm -o matrixmult matrix_mult.c
+matrixBlock: matrix_multBlock.c
+	$(MPICC) -o3 -lm -o block matrix_multBlock.c
+clean:
+	rm -rf *.exe
